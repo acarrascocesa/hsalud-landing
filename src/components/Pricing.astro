@@ -1,0 +1,128 @@
+---
+---
+
+<section id="pricing" class="pricing-section">
+  <div class="container">
+    <div class="section-header center">
+      <h2 class="h2-title">💳 Planes de Implementación – HSaludPro‑360</h2>
+      <p class="section-subtitle">Sin suscripción mensual. Despliegue en VPS privado de cada cliente, con ajustes y puesta en marcha incluidos.</p>
+      <div class="badges-row" aria-label="Condiciones comerciales">
+        <span class="chip">Sin mensualidad</span>
+        <span class="chip">VPS privado del cliente</span>
+        <span class="chip">Pago único o en cuotas</span>
+      </div>
+    </div>
+
+    <div class="pricing-grid two">
+      <div class="price-card popular">
+        <div class="badge">Pago único</div>
+        <h3 class="plan">Plan 1: Implementación Única</h3>
+        <div class="price">
+          <span class="currency">$</span>2,500
+        </div>
+        <p class="note">40% al iniciar · 60% a la entrega</p>
+        <ul class="features">
+          <li>12 módulos completos</li>
+          <li>Despliegue en VPS privado del cliente</li>
+          <li>Ajustes y puesta en marcha</li>
+          <li>Capacitación del equipo</li>
+        </ul>
+        <div class="cta">
+          <a href="http://162.245.191.108/" target="_blank" rel="noopener" class="button button-primary">Probar demo</a>
+          <a href="#contacto" class="button button-secondary">Solicitar propuesta</a>
+        </div>
+      </div>
+
+      <div class="price-card">
+        <div class="badge">Cuotas</div>
+        <h3 class="plan">Plan 2: Inicial + Cuotas</h3>
+        <div class="price">
+          <span class="currency">$</span>2,500
+        </div>
+        <p class="note">50% inicial + 5 cuotas de $250</p>
+        <ul class="features">
+          <li>12 módulos completos</li>
+          <li>Despliegue en VPS privado del cliente</li>
+          <li>Ajustes y puesta en marcha</li>
+          <li>Capacitación del equipo</li>
+        </ul>
+        <div class="cta">
+          <a href="http://162.245.191.108/" target="_blank" rel="noopener" class="button button-primary">Probar demo</a>
+          <a href="#contacto" class="button button-secondary">Solicitar propuesta</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="footnote center">Sin mensualidad de licenciamiento. En Plan 2 las cuotas son parte del pago total. El sistema se despliega en un VPS privado a nombre del cliente. Backups diarios incluidos durante la implementación inicial (configurables).</p>
+  </div>
+</section>
+
+<style lang="scss">
+  .pricing-section{
+  padding: var(--section-pad-y) 0;
+  background: var(--white);
+
+  .container{ max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+  .section-subtitle{ color: var(--text-secondary); max-width: 800px; margin: 10px auto 8px; }
+  .badges-row{ display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .chip{ background: var(--light-bg); border: 1px solid rgba(0,0,0,0.06); color: var(--text-secondary); padding: 6px 10px; border-radius: 999px; font-size: .85rem; }
+
+  .pricing-grid{ display: grid; gap: 16px; margin-top: 24px; }
+  .pricing-grid.two{ grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; max-width: 900px; margin: 24px auto 0; }
+
+  .price-card{
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    position: relative;
+    transition: transform .2s ease, box-shadow .2s ease;
+    display: flex;
+    flex-direction: column;
+
+    &:hover{ transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.1); }
+
+    &.popular{ border-color: var(--primary); box-shadow: 0 16px 40px rgba(59,124,114,0.12); }
+  }
+
+  .badge{
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--white);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: .8rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .plan{ margin: 8px 0 0; font-weight: 700; }
+
+  .price{ font-size: 2rem; font-weight: 700; color: var(--text-primary); }
+  .currency{ font-size: 1.2rem; vertical-align: super; margin-right: 2px; }
+  .period{ font-size: 1rem; color: var(--text-secondary); margin-left: 4px; }
+
+  .note{ color: var(--text-secondary); margin: 6px 0 14px; }
+
+  .features{ list-style: none; margin: 0 0 12px; padding: 0; }
+  .features li{ margin: 6px 0; color: var(--text-secondary); font-size: .95rem; }
+  .cta{ margin-top: auto; }
+
+  .cta{ display: flex; gap: 10px; }
+
+  .footnote{ margin-top: 12px; color: var(--text-secondary); font-size: .9rem; }
+  
+  @media (max-width: 900px){
+    .pricing-grid, .pricing-grid.two{ grid-template-columns: 1fr; gap: 12px; margin-top: 16px; }
+    .price-card{ padding: 16px; }
+    .plan{ text-align: center; }
+    .price{ font-size: 1.8rem; text-align: center; }
+    .note{ text-align: center; }
+    .features li{ font-size: .9rem; }
+    .cta{ flex-direction: column; }
+    .cta .button{ width: 100%; text-align: center; }
+  }
+  }
+</style>

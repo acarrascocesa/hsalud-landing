@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: http://162.245.191.108/sitemap.xml
+

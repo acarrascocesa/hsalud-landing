@@ -1,0 +1,48 @@
+---
+const year = new Date().getFullYear();
+const nav = [
+  { title: 'Módulos', href: '#features' },
+  { title: 'Beneficios', href: '#beneficios' },
+  { title: 'Precios', href: '#pricing' },
+  { title: 'FAQ', href: '#faq' },
+  { title: 'Demo', href: 'http://162.245.191.108/' },
+];
+const whatsappPhone = '18495311924';
+const whatsappLink = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent('Hola, quiero información de HSalud Pro')}`;
+---
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="brand">
+        <div class="logo">HSalud Pro</div>
+        <p class="tagline">Sistema de Gestión Médica Integral</p>
+      </div>
+
+      <nav class="links" aria-label="Navegación inferior">
+        {nav.map((item) => (
+          <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener' : undefined}>{item.title}</a>
+        ))}
+      </nav>
+
+      <div class="cta">
+        <a class="button button-primary" href={whatsappLink} target="_blank" rel="noopener">Contactar ventas</a>
+      </div>
+
+      <div class="legal">© {year} HSalud Pro. Todos los derechos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<style lang="scss">
+footer{ padding: 28px 0; background: var(--white); border-top: 1px solid rgba(0,0,0,0.06); }
+.container{ max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.footer-inner{ max-width: 900px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; gap: 12px; }
+.brand .logo{ font-weight: 800; font-size: 1.4rem; color: var(--primary); }
+.brand .tagline{ color: var(--text-secondary); margin: 0; font-size: .95rem; }
+.links{ display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+.links a{ color: var(--text-secondary); text-decoration: none; font-size: .95rem; }
+.links a:hover{ color: var(--primary); }
+.cta .hint{ display: none; }
+.legal{ margin-top: 6px; color: var(--text-secondary); font-size: .9rem; }
+</style>

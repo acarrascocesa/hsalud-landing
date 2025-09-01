@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 128 128">
+    <!-- Fondo circular -->
+    <circle cx="64" cy="64" r="60" fill="#3B7C72" stroke="#2C5D56" stroke-width="4"/>
+    
+    <!-- Cruz médica -->
+    <rect x="45" y="35" width="38" height="8" rx="4" fill="white"/>
+    <rect x="55" y="25" width="8" height="38" rx="4" fill="white"/>
+    
+    <!-- Punto central -->
+    <circle cx="64" cy="64" r="6" fill="#3B7C72"/>
+    
+    <!-- Estilo para modo oscuro -->
+    <style>
+        @media (prefers-color-scheme: dark) {
+            circle:first-child { fill: #2C5D56; stroke: #1e3d38; }
+            rect { fill: #E8F5F3; }
+            circle:last-child { fill: #2C5D56; }
+        }
+    </style>
+</svg>

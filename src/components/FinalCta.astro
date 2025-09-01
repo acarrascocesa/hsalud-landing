@@ -1,0 +1,110 @@
+---
+import logoLuis from '../assets/logo-luis.png';
+import logoLinda from '../assets/logo-linda.jpeg';
+
+const testimonials = [
+  {
+    name: 'Dr. Luis Arturo Castillo Roa',
+    specialty: 'Cardiología',
+    img: logoLuis,
+    quote:
+      'Con HSalud Pro ordenamos todo el flujo de pacientes y facturación. Las consultas son más ágiles y el seguimiento clínico es impecable.'
+  },
+  {
+    name: 'Dra. Linda Flor Medina',
+    specialty: 'Alergología',
+    img: logoLinda,
+    quote:
+      'La agenda centralizada y las historias clínicas digitales nos ahorran tiempo cada día. La comunicación con pacientes es mucho más efectiva.'
+  }
+];
+---
+
+<section class="fine-section padded" id="clientes">
+    <div class="container">
+      <div class="testimonials-grid">
+        {testimonials.map((t) => (
+          <div class="testimony">
+            <div class="flex">
+              <div class="customer-pic">
+                <div class="circular-image">
+                  <img src={t.img.src} alt={`${t.name} — ${t.specialty}`} loading="lazy" decoding="async" />
+                </div>
+              </div>
+              <div class="customer-testimony">
+                <h4 class="h3-title">“{t.quote}”</h4>
+                <p>{t.name} — {t.specialty}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+</section> 
+
+<style lang="scss">
+
+
+.fine-section{
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    .container{
+        position: relative;
+    }
+}
+.testimonials-grid{
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.testimony{
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    padding: 28px 16px 16px 16px;
+    border-radius: 12px;
+    position: relative;
+    margin-bottom: 16px;
+}
+.testimony .flex{ align-items: center; gap: 14px; }
+.customer-testimony{
+    width: auto;
+    flex: 1;
+    h4, p{
+        color: #fff;
+    }
+}
+
+.customer-pic{
+    width: 110px;
+    flex: 0 0 110px;
+}
+
+.circular-image {
+    width: 96px;
+    height: 96px;
+    display: inline-block;
+    position: relative;
+    img{
+        width: 100%;
+        border-radius: 12px;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+ }
+
+
+
+ @media (max-width:900px) {
+    .testimonials-grid{ grid-template-columns: 1fr; gap: 12px; }
+    .flex{ flex-direction: row; gap: 12px; align-items: center; }
+    .customer-testimony{ width: 100%; }
+    .customer-pic{ width: 90px; flex-basis: 90px; }
+    .circular-image{ width: 80px; height: 80px; }
+    .fine-section{ margin-top: 40px; }
+ }
+
+
+
+</style>

@@ -1,0 +1,210 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={Astro.url} />
+
+    <meta name="description" content="HSalud Pro: Sistema de Gestión Médica Integral en VPS privado. 12 módulos reales: pacientes, citas, historia clínica, recetas y facturación con seguros en RD." />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="HSalud Pro: Sistema de Gestión Médica Integral en VPS privado para clínicas en RD." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta name="twitter:card" content="summary" />
+
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "HSalud Pro",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Sistema de Gestión Médica Integral con 12 módulos, desplegado en VPS privado del cliente.",
+        "url": "http://162.245.191.108/"
+      }
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+<style lang="scss" is:global>
+  @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+  :root {
+    /* Spacing & radii */
+    --space-xxs: 4px;
+    --space-xs: 6px;
+    --space-s: 8px;
+    --space-m: 12px;
+    --space-l: 16px;
+    --space-xl: 24px;
+    --radius-s: 8px;
+    --radius-m: 12px;
+    --radius-l: 16px;
+    --section-pad-y: 80px;
+
+    --primary: #3b7c72; // Mint Soft 600 - Color principal médico
+    --secondary: #5b9bd5; // Blue Clinical 500 - Enlaces y elementos informativos
+    --accent: #e8f5f3; // Mint Soft 50 - Fondos y destacados
+    --text-primary: #495057; // Gray Platinum 700 - Texto principal
+    --text-secondary: #6c757d; // Gray Platinum 600 - Texto secundario
+    --success: #28a745; // Verde para estados positivos
+    --warning: #ffc107; // Amarillo para alertas
+    --danger: #dc3545; // Rojo para errores
+    --white: #ffffff;
+    --light-bg: #f8f9fa;
+    --font-family: "Ubuntu", sans-serif;
+  }
+
+  body,
+  html {
+    font-family: var(--font-family);
+    scroll-behavior: smooth;
+    margin: 0px;
+    color: var(--text-primary);
+    background-color: var(--white);
+  }
+  .block {
+    display: block;
+  }
+  .h1-title,
+  .h2-title {
+    font-weight: 500;
+  }
+  .h1-title {
+    font-size: 3.6rem;
+  }
+  .h2-title {
+    font-size: 2.4rem;
+  }
+  .h3-title {
+    font-size: 1.8rem;
+  }
+
+  .text-container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  @mixin btnPrimary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
+    transition: all 0.3s ease;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: #2c5d56;
+      border-color: #2c5d56;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 124, 114, 0.3);
+    }
+  }
+
+  .button {
+    border-radius: 40px;
+    text-transform: none;
+    font-weight: 500;
+    font-size: 1.4rem;
+    &.button-primary {
+      @include btnPrimary;
+      &:hover,
+      &:focus,
+      &:active {
+        @include btnPrimary;
+      }
+    }
+    &.button-secondary {
+      background-color: var(--secondary);
+      border-color: var(--secondary);
+      color: var(--white);
+      transition: all 0.3s ease;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: #4a7bc4;
+        border-color: #4a7bc4;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(91, 155, 213, 0.3);
+      }
+    }
+    &.lg {
+      height: 50px;
+      line-height: 48px;
+    }
+  }
+  .flex {
+    display: flex;
+  }
+  section.padded {
+    padding: 70px 0;
+  }
+
+  .medical-section {
+    background: linear-gradient(135deg, var(--accent), var(--light-bg));
+    padding: 80px 0;
+  }
+
+  .medical-card {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(59, 124, 114, 0.1);
+    border: 1px solid rgba(59, 124, 114, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(59, 124, 114, 0.2);
+    }
+  }
+
+  .medical-accent {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  //@ Global mobile/tablet styling
+
+  @media (max-width: 900px) {
+    :root {
+      --section-pad-y: 56px;
+    }
+    .h1-title {
+      font-size: 2.4rem;
+    }
+    .h2-title {
+      font-size: 1.8rem;
+    }
+    .h3-title {
+      font-size: 1.4rem;
+    }
+  }
+</style>

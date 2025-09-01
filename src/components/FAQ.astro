@@ -1,0 +1,90 @@
+---
+---
+
+<section id="faq" class="faq-section">
+  <div class="container">
+    <div class="section-header center">
+      <h2 class="h2-title">❓ Preguntas Frecuentes</h2>
+      <p class="section-subtitle">Todo lo esencial sobre seguridad, implementación y operación diaria.</p>
+    </div>
+
+    <div class="faq-list" role="list">
+      <details class="faq-item">
+        <summary>¿Cómo estarán seguros mis datos? (VPS privado)</summary>
+        <div class="answer">
+          Implementamos HSalud Pro en un VPS privado a nombre de tu clínica. Tus datos médicos (pacientes, historias clínicas, facturación) viven en una base PostgreSQL dedicada; no se comparten con otras clínicas. El acceso es por usuarios y roles; las conexiones usan HTTPS; se ejecutan copias de seguridad diarias configurables y se registra actividad para trazabilidad. En pocas palabras: infraestructura aislada, acceso controlado y respaldos que protegen la información de tus pacientes.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Puedo gestionar varias clínicas con una cuenta?</summary>
+        <div class="answer">
+          Sí. El sistema es multi‑clínica: puedes ver métricas unificadas o por clínica, con aislamiento de datos y permisos diferenciados por ubicación.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cómo es la migración de datos?</summary>
+        <div class="answer">
+          Ofrecemos soporte para migración desde planillas (CSV/Excel) y sistemas previos. Validamos estructura, mapeamos campos (pacientes, citas, facturas) y ejecutamos importación controlada.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué incluye la implementación?</summary>
+        <div class="answer">
+          Configuración de clínicas, usuarios y servicios, despliegue en VPS privado del cliente, base de datos PostgreSQL optimizada, ajustes iniciales y capacitación del equipo médico. Opcionalmente, se puede contratar soporte continuo.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Hay mensualidades?</summary>
+        <div class="answer">
+          No hay suscripción mensual por licenciamiento. El Plan 1 es pago único. El Plan 2 divide el total en un pago inicial y 5 cuotas mensuales; no son pagos recurrentes posteriores. El VPS corre a nombre del cliente.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Requiere instalación local?</summary>
+        <div class="answer">
+          No. Es una aplicación web accesible 24/7 desde navegadores modernos, con diseño responsive y PWA para escenarios de conectividad limitada.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cómo puedo probar el sistema?</summary>
+        <div class="answer">
+          Ingresa a la demo en vivo: <a href="http://162.245.191.108/" target="_blank" rel="noopener">162.245.191.108</a> y usa las credenciales de doctor: <code>alfredoperez@gmail.com</code> / <code>123456</code>.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+.faq-section{
+  padding: var(--section-pad-y) 0;
+  background: var(--light-bg);
+
+  .container{ max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+  .faq-list{ display: grid; gap: 10px; }
+
+  .faq-item{
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 12px;
+    padding: 12px 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+
+    summary{
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-primary);
+      outline: none;
+    }
+
+    .answer{ margin-top: 10px; color: var(--text-secondary); line-height: 1.6; }
+  }
+}
+</style>

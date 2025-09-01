@@ -1,0 +1,485 @@
+---
+// Beneficios reales de HSalud Pro (6)
+const benefits = [
+  {
+    title: 'Reducción del 75% del tiempo administrativo',
+    highlight: '⏱️ 75% menos tareas administrativas',
+    before: '4–5 horas diarias en papeleo y confirmaciones',
+    after: '≈1 hora diaria con procesos automatizados',
+    features: [
+      'Búsqueda instantánea por cédula/nombre/teléfono',
+      'Facturas automáticas al completar citas',
+      'Historial clínico en 2 clics'
+    ],
+    icon: '⚡',
+    color: 'primary'
+  },
+  {
+    title: 'Incremento de ingresos del 30–40%',
+    highlight: '💰 +30–40% ingresos',
+    before: 'Facturas perdidas y cobranza manual',
+    after: 'Cobranza controlada y trazable',
+    features: [
+      'Estados: Pendiente/Pagada/Parcial/Rechazada',
+      'Gestión de seguros con autorización',
+      'Reducción 90% de facturas perdidas'
+    ],
+    icon: '💰',
+    color: 'success'
+  },
+  {
+    title: 'Multi‑clínica desde una sola cuenta',
+    highlight: '🏥 Escalabilidad multi‑clínica',
+    before: 'Sistemas separados por clínica',
+    after: 'Vista unificada con aislamiento de datos',
+    features: [
+      'Roles por ubicación',
+      'Reportes consolidados o individuales',
+      'Aislamiento garantizado por clínica'
+    ],
+    icon: '🏥',
+    color: 'secondary'
+  },
+  {
+    title: 'Acceso 24/7 desde cualquier dispositivo',
+    highlight: '📱 Acceso móvil 24/7',
+    before: 'Trabajo limitado a la oficina',
+    after: 'Productividad sin ubicación',
+    features: [
+      'Responsive y PWA',
+      'Funciona con conectividad limitada',
+      'Sincronización automática'
+    ],
+    icon: '📱',
+    color: 'info'
+  },
+  {
+    title: 'Seguridad en VPS privado',
+    highlight: '🔒 Datos aislados y respaldos',
+    before: 'Riesgo en sistemas compartidos o sin copias',
+    after: 'VPS privado, acceso controlado y backups diarios',
+    features: [
+      'VPS privado del cliente',
+      'Accesos por roles + HTTPS',
+      'Backups diarios + trazabilidad'
+    ],
+    icon: '🔒',
+    color: 'warning'
+  },
+  {
+    title: 'Analytics e inteligencia médica',
+    highlight: '📊 Datos en tiempo real',
+    before: 'Decisiones sin datos consolidados',
+    after: 'Inteligencia clínica y financiera',
+    features: [
+      'Dashboard, KPIs y tendencias',
+      'Reportes exportables (CSV/PDF/Excel)',
+      'Análisis por especialidad/estado'
+    ],
+    icon: '📊',
+    color: 'danger'
+  }
+]
+---
+
+
+<section class="product-defined" id="beneficios">
+    <div class="container">
+         <div class="row">
+            <div class="twelve columns">
+                <div class="section-header center">
+                    <h2 class="h2-title">🏆 6 Beneficios Clave de HSalud Pro</h2>
+                    <p class="section-subtitle">Sistema médico real en producción con clínicas y datos reales: transforma tu operación en moderna, eficiente y altamente rentable</p>
+                </div>
+            </div>
+        </div>
+        <!-- KPIs destacados -->
+        <ul class="kpi-row" aria-label="Indicadores clave de beneficios">
+          <li>⏱️ <strong>75%</strong> menos tiempo admin</li>
+          <li>💰 <strong>+30–40%</strong> ingresos</li>
+          <li>🏥 <strong>Multi‑clínica</strong> con aislamiento</li>
+          <li>📱 <strong>Acceso 24/7</strong> PWA</li>
+          <li>🔒 <strong>VPS privado</strong> + backups diarios</li>
+          <li>📊 <strong>Analytics</strong> en tiempo real</li>
+        </ul>
+
+        <!-- Carrusel accesible con scroll‑snap -->
+        <div class="benefits-snap" id="benefitsSnap" role="region" aria-roledescription="carrusel" aria-label="Beneficios de HSalud Pro" tabindex="0">
+          {benefits.map((benefit, index) => (
+            <article class="benefit-card" role="group" aria-label={`${index+1}. ${benefit.title}`} tabindex="0">
+              <div class="benefit-header">
+                <div class={`benefit-icon benefit-icon-${benefit.color}`}>{benefit.icon}</div>
+                <div class="benefit-number">#{index + 1}</div>
+              </div>
+              <h3 class="benefit-title">{benefit.title}</h3>
+              <div class={`benefit-highlight benefit-highlight-${benefit.color}`}>{benefit.highlight}</div>
+
+              <div class="benefit-comparison">
+                <div class="before-after">
+                  <div class="before">
+                    <span class="label">❌ Antes:</span>
+                    <span class="text">{benefit.before}</span>
+                  </div>
+                  <div class="after">
+                    <span class="label">✅ Con HSalud Pro:</span>
+                    <span class="text">{benefit.after}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="benefit-features">
+                <h4>Automatización implementada</h4>
+                <ul>
+                  {benefit.features.slice(0, 3).map((feature) => (
+                    <li>• {feature}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="snap-controls" aria-label="Controles del carrusel">
+          <button class="nav-btn" aria-label="Anterior" data-dir="prev">‹</button>
+          <button class="nav-btn" aria-label="Siguiente" data-dir="next">›</button>
+        </div>
+
+        <script>
+          const snap = document.getElementById('benefitsSnap') as HTMLDivElement | null;
+          const cards = (): HTMLElement[] => Array.from(snap?.querySelectorAll<HTMLElement>('.benefit-card') ?? []);
+          let current = 0;
+          let timer: number | undefined;
+
+          function nearestIndex(): number {
+            const list = cards();
+            if (!snap) return 0;
+            const left = snap.scrollLeft;
+            let idx = 0;
+            let min = Infinity;
+            list.forEach((el: HTMLElement, i: number) => {
+              const dist = Math.abs(el.offsetLeft - left);
+              if (dist < min) { min = dist; idx = i; }
+            });
+            return idx;
+          }
+
+          function goTo(i: number): void {
+            const list = cards();
+            const el = list[i] as HTMLElement | undefined;
+            if (!el || !snap) return;
+            current = i;
+            snap.scrollTo({ left: el.offsetLeft, behavior: 'smooth' });
+            // no dots; just move
+          }
+
+          function move(dir: 'next' | 'prev'): void {
+            const list = cards();
+            const base = nearestIndex();
+            const delta = dir === 'next' ? 1 : -1;
+            current = Math.min(list.length - 1, Math.max(0, base + delta));
+            goTo(current);
+          }
+
+          document.addEventListener('click', (e: MouseEvent) => {
+            const t = e.target;
+            if (t instanceof Element && t.matches('.snap-controls .nav-btn')) {
+              const dir = t.getAttribute('data-dir');
+              if (dir === 'next' || dir === 'prev') move(dir);
+            }
+          });
+
+          snap?.addEventListener('scroll', () => {
+            current = nearestIndex();
+          }, { passive: true });
+
+          function startAuto(){
+            stopAuto();
+            timer = window.setInterval(() => move('next'), 6000);
+          }
+          function stopAuto(){ if (timer) { window.clearInterval(timer); timer = undefined; } }
+
+          snap?.addEventListener('mouseenter', stopAuto);
+          snap?.addEventListener('mouseleave', startAuto);
+          snap?.addEventListener('focusin', stopAuto);
+          snap?.addEventListener('focusout', startAuto);
+
+          // Keyboard navigation: ArrowLeft / ArrowRight
+          snap?.addEventListener('keydown', (e: KeyboardEvent) => {
+            if (e.key === 'ArrowRight') { e.preventDefault(); move('next'); }
+            else if (e.key === 'ArrowLeft') { e.preventDefault(); move('prev'); }
+          });
+
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startAuto);
+          } else {
+            startAuto();
+          }
+        </script>
+        
+        <div class="row center">
+            <div class="twelve columns">
+                <a href="http://162.245.191.108/" target="_blank" rel="noopener" class="button button-primary lg">Probar Demo Gratis</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<style lang="scss">
+
+
+
+.product-defined{ 
+    padding: var(--section-pad-y) 20px;
+    background: var(--white);
+    
+    .container{
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .section-header{
+        margin-bottom: 40px;
+        
+        .section-subtitle{
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-top: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    
+    .kpi-row{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 8px;
+        margin-bottom: 16px;
+        list-style: none;
+        padding: 0;
+
+        li{
+            background: var(--light-bg);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 999px;
+            padding: 6px 10px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: .9rem;
+            strong{ color: var(--text-primary); }
+        }
+    }
+
+    .benefits-snap{
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+        margin-bottom: 12px;
+        scroll-padding-left: 16px;
+        &::-webkit-scrollbar{ display: none; }
+    }
+
+    .benefit-card{
+        background: var(--white);
+        padding: 22px 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba(0,0,0,0.06);
+        transition: all 0.25s ease;
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+        flex: 0 0 90%;
+        min-height: 260px;
+        scroll-snap-align: start;
+        
+        &::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        &:hover{
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
+            border-color: rgba(59, 124, 114, 0.25);
+        }
+    }
+    
+    .benefit-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+    
+    .benefit-icon{
+        font-size: 2rem;
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        margin: 0;
+        
+        &.benefit-icon-primary{
+            background: linear-gradient(135deg, var(--primary), #2C5D56);
+            color: var(--white);
+        }
+        
+        &.benefit-icon-success{
+            background: linear-gradient(135deg, var(--success), #1e7e34);
+            color: var(--white);
+        }
+        
+        &.benefit-icon-secondary{
+            background: linear-gradient(135deg, var(--secondary), #4A7BC4);
+            color: var(--white);
+        }
+        
+        &.benefit-icon-info{
+            background: linear-gradient(135deg, #17a2b8, #138496);
+            color: var(--white);
+        }
+        
+        &.benefit-icon-warning{
+            background: linear-gradient(135deg, var(--warning), #e0a800);
+            color: var(--white);
+        }
+        
+        &.benefit-icon-danger{
+            background: linear-gradient(135deg, var(--danger), #c82333);
+            color: var(--white);
+        }
+    }
+    
+    .benefit-number{
+        background: var(--primary);
+        color: var(--white);
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 700; font-size: .95rem;
+    }
+    
+    .benefit-title{
+        color: var(--text-primary);
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        line-height: 1.25;
+    }
+    
+    .benefit-highlight{
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: .95rem;
+        margin-bottom: 12px;
+        display: inline-block;
+    
+        &.benefit-highlight-primary{
+            background: linear-gradient(135deg, var(--primary), #2C5D56);
+            color: var(--white);
+        }
+        
+        &.benefit-highlight-success{
+            background: linear-gradient(135deg, var(--success), #1e7e34);
+            color: var(--white);
+        }
+        
+        &.benefit-highlight-secondary{
+            background: linear-gradient(135deg, var(--secondary), #4A7BC4);
+            color: var(--white);
+        }
+        
+        &.benefit-highlight-info{
+            background: linear-gradient(135deg, #17a2b8, #138496);
+            color: var(--white);
+        }
+        
+        &.benefit-highlight-warning{
+            background: linear-gradient(135deg, var(--warning), #e0a800);
+            color: var(--white);
+        }
+        
+        &.benefit-highlight-danger{
+            background: linear-gradient(135deg, var(--danger), #c82333);
+            color: var(--white);
+        }
+    }
+
+    .benefit-comparison{
+        margin-bottom: 12px;
+        
+        .before-after{
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 10px 12px;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .before, .after{
+            margin-bottom: 10px;
+            
+            &:last-child{
+                margin-bottom: 0;
+            }
+        }
+        
+        .label{ font-weight: 700; font-size: .9rem; display: block; margin-bottom: 4px; }
+        
+        .text{ color: var(--text-secondary); font-size: .95rem; line-height: 1.4; }
+    }
+    
+    .benefit-features{
+        h4{ color: var(--primary); font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+        ul{ list-style: none; padding: 0; margin: 0; }
+        li{ color: var(--text-secondary); font-size: .9rem; line-height: 1.4; margin-bottom: 6px; padding-left: 0; }
+        li:last-child{ margin-bottom: 0; }
+    }
+    
+    .snap-controls{ display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 6px; }
+    .nav-btn{
+        background: var(--primary);
+        color: var(--white);
+        border: none;
+        width: 44px; height: 44px; border-radius: 50%;
+        font-size: 1.4rem; cursor: pointer;
+        transition: all .2s ease; display: flex; align-items: center; justify-content: center;
+        &:hover{ background: #2C5D56; transform: scale(1.05); }
+    }
+    /* dots removed */
+    
+
+
+    @media (max-width: 700px) {
+        padding: 48px 16px;
+        .kpi-row{ grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 6px; }
+        .kpi-row li{ padding: 6px 8px; font-size: .85rem; }
+        .benefits-snap{ gap: 10px; scroll-padding-left: 12px; }
+        .benefit-card{ flex-basis: 100%; padding: 14px 12px; min-height: auto; }
+        .benefit-title{ font-size: 1.2rem; }
+        .benefit-highlight{ font-size: .9rem; }
+        .benefit-icon{ font-size: 2rem; width: 50px; height: 50px; }
+        .benefit-number{ width: 30px; height: 30px; font-size: 0.85rem; }
+        .snap-controls{ gap: 8px; }
+        .nav-btn{ width: 42px; height: 42px; }
+    }
+    
+    @media (min-width: 900px){
+        .benefit-card{ flex-basis: 48%; }
+    }
+  }
+</style>
