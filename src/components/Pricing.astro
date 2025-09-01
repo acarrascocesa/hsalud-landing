@@ -17,10 +17,6 @@
       <div class="price-card popular">
         <div class="badge">Pago único</div>
         <h3 class="plan">Plan 1: Implementación Única</h3>
-        <div class="price">
-          <span class="currency">$</span>2,500
-        </div>
-        <p class="note">40% al iniciar · 60% a la entrega</p>
         <ul class="features">
           <li>12 módulos completos</li>
           <li>Despliegue en VPS privado del cliente</li>
@@ -29,17 +25,13 @@
         </ul>
         <div class="cta">
           <a href="http://162.245.191.108/" target="_blank" rel="noopener" class="button button-primary">Probar demo</a>
-          <a href="#contacto" class="button button-secondary">Solicitar propuesta</a>
+          <a href="#contacto" class="button button-secondary" data-open-contact>Solicitar propuesta</a>
         </div>
       </div>
 
       <div class="price-card">
         <div class="badge">Cuotas</div>
         <h3 class="plan">Plan 2: Inicial + Cuotas</h3>
-        <div class="price">
-          <span class="currency">$</span>2,500
-        </div>
-        <p class="note">50% inicial + 5 cuotas de $250</p>
         <ul class="features">
           <li>12 módulos completos</li>
           <li>Despliegue en VPS privado del cliente</li>
@@ -48,7 +40,7 @@
         </ul>
         <div class="cta">
           <a href="http://162.245.191.108/" target="_blank" rel="noopener" class="button button-primary">Probar demo</a>
-          <a href="#contacto" class="button button-secondary">Solicitar propuesta</a>
+          <a href="#contacto" class="button button-secondary" data-open-contact>Solicitar propuesta</a>
         </div>
       </div>
     </div>
@@ -98,19 +90,32 @@
     margin-bottom: 8px;
   }
 
-  .plan{ margin: 8px 0 0; font-weight: 700; }
+  .plan{
+    margin: 8px 0 0;
+    font-weight: 700;
+    font-size: 1.5rem;      /* tamaño controlado */
+    line-height: 1.25;      /* mejor altura de línea */
+    overflow-wrap: anywhere;/* evita desbordes incluso en palabras largas */
+    word-break: break-word;
+    hyphens: auto;
+  }
 
-  .price{ font-size: 2rem; font-weight: 700; color: var(--text-primary); }
-  .currency{ font-size: 1.2rem; vertical-align: super; margin-right: 2px; }
-  .period{ font-size: 1rem; color: var(--text-secondary); margin-left: 4px; }
-
-  .note{ color: var(--text-secondary); margin: 6px 0 14px; }
+  /* Precios eliminados */
+  .price, .currency, .period, .note{ display: none; }
 
   .features{ list-style: none; margin: 0 0 12px; padding: 0; }
   .features li{ margin: 6px 0; color: var(--text-secondary); font-size: .95rem; }
   .cta{ margin-top: auto; }
 
-  .cta{ display: flex; gap: 10px; }
+  .cta{ display: flex; gap: 10px; flex-wrap: wrap; }
+  .cta .button{
+    flex: 1 1 200px;
+    min-width: 160px;
+    font-size: 1rem;       /* reduce tipografía en cards */
+    padding: 8px 14px;     /* padding más compacto */
+    height: 42px;          /* altura contenida */
+    line-height: 40px;
+  }
 
   .footnote{ margin-top: 12px; color: var(--text-secondary); font-size: .9rem; }
   
@@ -119,10 +124,10 @@
     .price-card{ padding: 16px; }
     .plan{ text-align: center; }
     .price{ font-size: 1.8rem; text-align: center; }
-    .note{ text-align: center; }
+    .note{ display: none; }
     .features li{ font-size: .9rem; }
     .cta{ flex-direction: column; }
-    .cta .button{ width: 100%; text-align: center; }
+    .cta .button{ width: 100%; text-align: center; font-size: 1rem; height: 42px; line-height: 40px; }
   }
   }
 </style>

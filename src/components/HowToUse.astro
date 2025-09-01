@@ -148,7 +148,6 @@ const benefits = [
           const snap = document.getElementById('benefitsSnap') as HTMLDivElement | null;
           const cards = (): HTMLElement[] => Array.from(snap?.querySelectorAll<HTMLElement>('.benefit-card') ?? []);
           let current = 0;
-          let timer: number | undefined;
 
           function nearestIndex(): number {
             const list = cards();
@@ -192,28 +191,27 @@ const benefits = [
             current = nearestIndex();
           }, { passive: true });
 
-          function startAuto(){
-            stopAuto();
-            timer = window.setInterval(() => move('next'), 6000);
-          }
-          function stopAuto(){ if (timer) { window.clearInterval(timer); timer = undefined; } }
-
-          snap?.addEventListener('mouseenter', stopAuto);
-          snap?.addEventListener('mouseleave', startAuto);
-          snap?.addEventListener('focusin', stopAuto);
-          snap?.addEventListener('focusout', startAuto);
-
           // Keyboard navigation: ArrowLeft / ArrowRight
           snap?.addEventListener('keydown', (e: KeyboardEvent) => {
             if (e.key === 'ArrowRight') { e.preventDefault(); move('next'); }
             else if (e.key === 'ArrowLeft') { e.preventDefault(); move('prev'); }
           });
 
-          if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', startAuto);
-          } else {
-            startAuto();
+          // Forzar inicio en la primera tarjeta (sin autoplay)
+          function resetToFirst(){
+            if (!snap) return;
+            current = 0;
+            snap.scrollTo({ left: 0, behavior: 'auto' });
           }
+
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => { resetToFirst(); });
+          } else {
+            resetToFirst();
+          }
+
+          // Al volver a la página (bfcache), también iniciar en la primera
+          window.addEventListener('pageshow', resetToFirst);
         </script>
         
         <div class="row center">
@@ -282,6 +280,7 @@ const benefits = [
         scrollbar-width: none;
         margin-bottom: 12px;
         scroll-padding-left: 16px;
+        scroll-padding-right: 16px; /* evita corte de la última card */
         &::-webkit-scrollbar{ display: none; }
     }
 
@@ -295,9 +294,10 @@ const benefits = [
         text-align: left;
         position: relative;
         overflow: hidden;
-        flex: 0 0 90%;
+        flex: 0 0 96%; /* margen lateral sutil en el carrusel */
         min-height: 260px;
         scroll-snap-align: start;
+        scroll-snap-stop: always;
         
         &::before{
             content: '';
@@ -469,7 +469,7 @@ const benefits = [
         .kpi-row{ grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 6px; }
         .kpi-row li{ padding: 6px 8px; font-size: .85rem; }
         .benefits-snap{ gap: 10px; scroll-padding-left: 12px; }
-        .benefit-card{ flex-basis: 100%; padding: 14px 12px; min-height: auto; }
+        .benefit-card{ flex-basis: 96%; padding: 14px 12px; min-height: auto; }
         .benefit-title{ font-size: 1.2rem; }
         .benefit-highlight{ font-size: .9rem; }
         .benefit-icon{ font-size: 2rem; width: 50px; height: 50px; }
@@ -479,7 +479,7 @@ const benefits = [
     }
     
     @media (min-width: 900px){
-        .benefit-card{ flex-basis: 48%; }
+        .benefit-card{ flex-basis: 46%; }
     }
   }
 </style>

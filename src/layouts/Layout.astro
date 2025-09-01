@@ -80,6 +80,8 @@ const { title } = Astro.props;
   body,
   html {
     font-family: var(--font-family);
+    /* Aumenta el tamaño base de toda la app */
+    font-size: 18px;
     scroll-behavior: smooth;
     margin: 0px;
     color: var(--text-primary);
@@ -194,6 +196,7 @@ const { title } = Astro.props;
   //@ Global mobile/tablet styling
 
   @media (max-width: 900px) {
+    html { font-size: 17px; }
     :root {
       --section-pad-y: 56px;
     }
@@ -206,5 +209,10 @@ const { title } = Astro.props;
     .h3-title {
       font-size: 1.4rem;
     }
+  }
+
+  /* Desktop large: agranda un poco más para pantallas anchas */
+  @media (min-width: 1200px) {
+    html { font-size: 20px; }
   }
 </style>
